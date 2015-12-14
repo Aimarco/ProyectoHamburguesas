@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DatosHamburguesa"></activity>
+        <activity android:name=".DatosHamburguesa" />
+        <activity android:name=".pedidobebida" >
+        </activity>
     </application>
 
 </manifest>
