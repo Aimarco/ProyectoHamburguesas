@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f94327">
 
@@ -52,7 +53,7 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/spintamaño"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -62,10 +63,10 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
-        android:layout_below="@+id/spinner"
-        android:layout_alignLeft="@+id/spinner"
-        android:layout_alignStart="@+id/spinner" />
+        android:id="@+id/spicarne"
+        android:layout_below="@+id/spintamaño"
+        android:layout_alignLeft="@+id/spintamaño"
+        android:layout_alignStart="@+id/spintamaño" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -73,8 +74,8 @@
         android:id="@+id/imgclasica"
         android:src="@drawable/clasica4"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/spinner2"
-        android:layout_alignStart="@+id/spinner2" />
+        android:layout_alignLeft="@+id/spicarne"
+        android:layout_alignStart="@+id/spicarne" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -99,11 +100,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgvegetal"
-        android:layout_marginTop="61dp"
         android:src="@drawable/vwgetal"
-        android:layout_below="@+id/imgclasqueso"
-        android:layout_toRightOf="@+id/imgclasica"
-        android:layout_toEndOf="@+id/imgclasica" />
+        android:layout_below="@+id/cantdoblequeso"
+        android:layout_alignLeft="@+id/cantclasica"
+        android:layout_alignStart="@+id/cantclasica" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -111,8 +111,8 @@
         android:id="@+id/imgespecial"
         android:src="@drawable/espcial"
         android:layout_alignBottom="@+id/imgvegetal"
-        android:layout_toLeftOf="@+id/imgdobleq"
-        android:layout_toStartOf="@+id/imgdobleq" />
+        android:layout_toLeftOf="@+id/cantclasqueso"
+        android:layout_toStartOf="@+id/cantclasqueso" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -163,19 +163,42 @@
         android:layout_height="wrap_content"
         android:text="Salir"
         android:id="@+id/salir2"
-        android:layout_below="@+id/cantvegetal"
+        style="@android:style/Holo.Light.SegmentedButton"
+        android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/imgvegetal"
-        android:layout_alignEnd="@+id/imgvegetal"
-        style="@android:style/Holo.Light.SegmentedButton" />
+        android:layout_alignEnd="@+id/imgvegetal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Seguir"
         android:id="@+id/btnseguir2"
-        android:layout_alignBottom="@+id/salir2"
-        android:layout_toRightOf="@+id/cantclasqueso"
-        android:layout_toEndOf="@+id/cantclasqueso"
-        style="@android:style/Holo.Light.SegmentedButton" />
+        style="@android:style/Holo.Light.SegmentedButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/imgdobleq"
+        android:layout_alignEnd="@+id/imgdobleq" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/total"
+        android:id="@+id/textView3"
+        android:numeric="decimal"
+        android:editable="false"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/edtTotal"
+        android:layout_toLeftOf="@+id/cantespecial"
+        android:layout_toStartOf="@+id/cantespecial" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtTotal"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_alignRight="@+id/cantclasqueso"
+        android:layout_alignEnd="@+id/cantclasqueso"
+        android:layout_below="@+id/cantespecial" />
 
 </RelativeLayout>
