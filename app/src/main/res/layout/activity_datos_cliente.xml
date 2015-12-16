@@ -14,7 +14,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenido a la aplicación de la hamburgueseria de Cebanc"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -23,7 +22,8 @@
         android:layout_alignParentEnd="true"
         android:textStyle="bold"
         android:textSize="25dp"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="true"
+        android:text="@string/lblinicio" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
+        android:maxLength="9"
         android:id="@+id/edttlf"
         android:hint="Teléfono"
         android:layout_below="@+id/edtdireccion"
