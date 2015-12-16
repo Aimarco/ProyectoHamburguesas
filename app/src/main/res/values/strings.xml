@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ProyectoHamburguesas</string>
+    <string name="total">Total:</string>
+    <string name="euro">€</string>
+    <string name="Salir">Salir</string>
+    <string name="Siguiente">Siguiente</string>
 </resources>
