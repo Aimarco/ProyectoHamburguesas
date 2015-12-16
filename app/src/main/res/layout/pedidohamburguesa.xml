@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f94327">
 
@@ -13,7 +14,8 @@
         android:hint="nombre"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,7 +27,9 @@
         android:layout_below="@+id/txtnombrepas"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/txtdirecpas" />
+        android:layout_toStartOf="@+id/imgespecial"
+        android:layout_toLeftOf="@+id/imgespecial"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,21 +42,23 @@
         android:layout_toEndOf="@+id/txtnombrepas"
         android:layout_marginLeft="110dp"
         android:layout_marginStart="110dp"
-        android:hint="direccion" />
+        android:hint="direccion"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="__________________________________________________________"
+        android:text="______________________________________________________"
         android:id="@+id/textView2"
         android:layout_below="@+id/txttlfpas"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/spintamaño"
+        android:contentDescription="Seleccione tamaño de la hamburguesa"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -60,28 +66,29 @@
         android:layout_marginStart="28dp" />
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
-        android:layout_below="@+id/spinner"
-        android:layout_alignLeft="@+id/spinner"
-        android:layout_alignStart="@+id/spinner" />
+        android:id="@+id/spicarne"
+        android:contentDescription="Seleccione tipo de la carne"
+        android:layout_below="@+id/spintamaño"
+        android:layout_alignLeft="@+id/spintamaño"
+        android:layout_alignStart="@+id/spintamaño" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgclasica"
         android:src="@drawable/clasica4"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/spinner2"
-        android:layout_alignStart="@+id/spinner2" />
+        android:layout_below="@+id/spicarne"
+        android:layout_alignLeft="@+id/spicarne"
+        android:layout_alignStart="@+id/spicarne" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgclasqueso"
         android:src="@drawable/clasicaqueso"
-        android:layout_centerVertical="true"
+        android:layout_alignBottom="@+id/imgclasica"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -89,47 +96,45 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgdobleq"
         android:src="@drawable/doblecheese"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/spicarne"
         android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_marginRight="32dp"
-        android:layout_marginEnd="32dp" />
+        android:layout_alignEnd="@+id/textView2" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgvegetal"
-        android:layout_marginTop="61dp"
         android:src="@drawable/vwgetal"
-        android:layout_below="@+id/imgclasqueso"
-        android:layout_toRightOf="@+id/imgclasica"
-        android:layout_toEndOf="@+id/imgclasica" />
+        android:layout_below="@+id/cantdoblequeso"
+        android:layout_alignLeft="@+id/imgclasica"
+        android:layout_alignStart="@+id/imgclasica" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgespecial"
         android:src="@drawable/espcial"
-        android:layout_alignBottom="@+id/imgvegetal"
-        android:layout_toLeftOf="@+id/imgdobleq"
-        android:layout_toStartOf="@+id/imgdobleq" />
+        android:layout_above="@+id/cantvegetal"
+        android:layout_alignLeft="@+id/imgclasqueso"
+        android:layout_alignStart="@+id/imgclasqueso" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cantclasica"
-        android:layout_below="@+id/imgclasica"
-        android:layout_alignRight="@+id/txttlfpas"
-        android:layout_alignEnd="@+id/txttlfpas"
-        android:hint="0" />
+        android:hint="0"
+        android:layout_above="@+id/imgvegetal"
+        android:layout_alignLeft="@+id/imgvegetal"
+        android:layout_alignStart="@+id/imgvegetal" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cantclasqueso"
-        android:layout_alignBottom="@+id/cantclasica"
-        android:layout_centerHorizontal="true"
-        android:hint="0" />
+        android:hint="0"
+        android:layout_above="@+id/imgvegetal"
+        android:layout_alignLeft="@+id/imgespecial"
+        android:layout_alignStart="@+id/imgespecial" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -163,19 +168,44 @@
         android:layout_height="wrap_content"
         android:text="Salir"
         android:id="@+id/salir2"
-        android:layout_below="@+id/cantvegetal"
+        style="@android:style/Holo.Light.SegmentedButton"
+        android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/imgvegetal"
-        android:layout_alignEnd="@+id/imgvegetal"
-        style="@android:style/Holo.Light.SegmentedButton" />
+        android:layout_alignEnd="@+id/imgvegetal" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Seguir"
         android:id="@+id/btnseguir2"
-        android:layout_alignBottom="@+id/salir2"
-        android:layout_toRightOf="@+id/cantclasqueso"
-        android:layout_toEndOf="@+id/cantclasqueso"
-        style="@android:style/Holo.Light.SegmentedButton" />
+        style="@android:style/Holo.Light.SegmentedButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/imgdobleq"
+        android:layout_alignEnd="@+id/imgdobleq" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/total"
+        android:id="@+id/textView3"
+        android:numeric="decimal"
+        android:editable="false"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_alignBottom="@+id/edtTotal"
+        android:layout_alignLeft="@+id/imgclasica"
+        android:layout_alignStart="@+id/imgclasica" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtTotal"
+        android:layout_toRightOf="@+id/textView3"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_alignRight="@+id/txtdirecpas"
+        android:layout_alignEnd="@+id/txtdirecpas"
+        android:layout_below="@+id/cantespecial" />
 
 </RelativeLayout>
