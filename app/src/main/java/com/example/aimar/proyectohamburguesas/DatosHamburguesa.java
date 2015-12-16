@@ -2,6 +2,8 @@ package com.example.aimar.proyectohamburguesas;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -130,7 +132,22 @@ public class DatosHamburguesa extends AppCompatActivity {
         edtdobleq = (EditText) findViewById(R.id.cantdoblequeso);
         edtvegetal = (EditText) findViewById(R.id.cantvegetal);
         edtespecial = (EditText) findViewById(R.id.cantespecial);
+        edtclasica.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //vacio
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //vacio
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                total = calculoTotal(total,Integer.parseInt(edtclasica.getText().toString()),1);
+            }
+        });
 
     }
 
@@ -147,12 +164,11 @@ public class DatosHamburguesa extends AppCompatActivity {
     }
 
     //funcion para cambiar valor de total cambiando la hamburguesa seleccionada
-    public static float totalHamburguesa(float total, float phamburguesa) {
+    public static float calculoTotal(float total, int cantidad, float precio) {
 
-        if (phamburguesa != 0)
-            total += phamburguesa;
-        else
-            total = 0;
+        if (cantidad != 0)
+            total += (cantidad * precio);
         return total;
     }
+
 }
