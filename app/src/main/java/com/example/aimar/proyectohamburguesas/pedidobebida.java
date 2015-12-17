@@ -3,6 +3,7 @@ package com.example.aimar.proyectohamburguesas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,13 +26,14 @@ public class pedidobebida extends AppCompatActivity {
     private ImageButton b_cerveza;
     private Button salir;
     private Button siguiente;
+    private float totalsum = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidobebida);
-        total = (TextView) findViewById(R.id.textView4);
+        total = (TextView) findViewById(R.id.textView5);
         agua = (EditText) findViewById(R.id.editText);
         nestea = (EditText) findViewById(R.id.editText2);
         limon = (EditText) findViewById(R.id.editText3);
@@ -47,5 +49,51 @@ public class pedidobebida extends AppCompatActivity {
         salir = (Button) findViewById(R.id.btnsalir);
         siguiente = (Button) findViewById(R.id.btnseguir);
         mandadatoscli = new Intent(this, DatosHamburguesa.class);
+
+
+        b_agua.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                totalsum++;
+                total.setText(totalsum + "€");
+            }
+        });
+        b_nestea.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                totalsum++;
+                total.setText(totalsum + "€");
+            }
+        });
+        b_limon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                totalsum++;
+                total.setText(totalsum + "€");
+            }
+        });
+        b_naranja.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                totalsum++;
+                total.setText(totalsum + "€");
+            }
+        });
+        b_cocacola.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                totalsum++;
+                total.setText(totalsum + "€");
+            }
+        });
+        b_cerveza.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                totalsum = totalsum +2;
+                total.setText(totalsum + "€");
+            }
+        });
+
     }
+
 }

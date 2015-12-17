@@ -3,9 +3,7 @@
     <string name="total">TOTAL:</string>
     <string name="btnseguir">SEGUIR</string>
     <string name="btnsalir">SALIR</string>
-    <string name="lblinicio">Bienvenido a la aplicación de la hamburgueseria de Cebanc</string>
-    <string name="totalbebida">Total:</string>
-    <string name="totalbebida2">0</string>
-    <string name="totalbebida3">€</string>
+    <string name="totalbebida">Total: </string>
+    <string name="totalbebida2">0€</string>
     <string name="salirbebida">Salir</string>
 </resources>
