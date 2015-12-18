@@ -3,6 +3,8 @@ package com.example.aimar.proyectohamburguesas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +28,15 @@ public class pedidobebida extends AppCompatActivity {
     private ImageButton b_cerveza;
     private Button salir;
     private Button siguiente;
-    private float totalsum = 0;
+    private int totalsum = 0;
+    private int aguacont=0;
+    private int nesteacont=0;
+    private int limoncont=0;
+    private int naranjacont=0;
+    private int cocacolacont=0;
+    private int cervezacont=0;
+
+
 
 
     @Override
@@ -55,6 +65,7 @@ public class pedidobebida extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 totalsum++;
+                aguacont++;
                 total.setText(totalsum + "€");
             }
         });
@@ -62,6 +73,7 @@ public class pedidobebida extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 totalsum++;
+                nesteacont++;
                 total.setText(totalsum + "€");
             }
         });
@@ -69,6 +81,7 @@ public class pedidobebida extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 totalsum++;
+                limoncont++;
                 total.setText(totalsum + "€");
             }
         });
@@ -76,6 +89,7 @@ public class pedidobebida extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 totalsum++;
+                naranjacont++;
                 total.setText(totalsum + "€");
             }
         });
@@ -83,6 +97,7 @@ public class pedidobebida extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 totalsum++;
+                cocacolacont++;
                 total.setText(totalsum + "€");
             }
         });
@@ -90,10 +105,138 @@ public class pedidobebida extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 totalsum = totalsum +2;
+                cervezacont++;
                 total.setText(totalsum + "€");
             }
         });
+        agua.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //vacio
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int cont = Integer.parseInt((String) s);
+                totalsum += cont;
+                aguacont += cont;
+                total.setText(totalsum + "€");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //vacio
+            }
+        });
+        nestea.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //vacio
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int cont = Integer.parseInt((String) s);
+                totalsum += cont;
+                nesteacont += cont;
+                total.setText(totalsum + "€");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //vacio
+            }
+        });
+        limon.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //vacio
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int cont = Integer.parseInt((String) s);
+                totalsum += cont;
+                limoncont += cont;
+                total.setText(totalsum + "€");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //vacio
+            }
+        });
+        naranja.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //vacio
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int cont = Integer.parseInt((String) s);
+                totalsum += cont;
+                naranjacont += cont;
+                total.setText(totalsum + "€");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //vacio
+            }
+        });
+        cocacola.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //vacio
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int cont = Integer.parseInt((String) s);
+                totalsum += cont;
+                cocacolacont += cont;
+                total.setText(totalsum + "€");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //vacio
+            }
+        });
+        cerveza.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //vacio
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int cont = Integer.parseInt((String) s);
+                totalsum += (cont*2);
+                cervezacont += cont;
+                total.setText(totalsum + "€");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //vacio
+            }
+        });
+        siguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(this,infopedido.class);
+                intent.putExtra("agua", aguacont);
+                intent.putExtra("nestea", nesteacont);
+                intent.putExtra("limon", limoncont);
+                intent.putExtra("naranja", naranjacont);
+                intent.putExtra("cocacola",cocacolacont);
+                intent.putExtra("cerveza", cervezacont);
+
+
+            }
+        });
     }
 
 }
