@@ -6,4 +6,5 @@
     <string name="totalbebida">Total: </string>
     <string name="totalbebida2">0€</string>
     <string name="salirbebida">Salir</string>
+    <string name="lblinicio">Bienvenido a la Hamburgueseria de Cebanc</string>
 </resources>
