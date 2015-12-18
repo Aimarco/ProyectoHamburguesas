@@ -35,6 +35,7 @@ public class pedidobebida extends AppCompatActivity {
     private int naranjacont=0;
     private int cocacolacont=0;
     private int cervezacont=0;
+    private Intent intent;
 
 
 
@@ -59,7 +60,7 @@ public class pedidobebida extends AppCompatActivity {
         salir = (Button) findViewById(R.id.btnsalir);
         siguiente = (Button) findViewById(R.id.btnseguir);
         mandadatoscli = new Intent(this, DatosHamburguesa.class);
-
+        intent = new Intent(this,infopedido.class);
 
         b_agua.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -223,10 +224,10 @@ public class pedidobebida extends AppCompatActivity {
                 //vacio
             }
         });
+
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(this,infopedido.class);
                 intent.putExtra("agua", aguacont);
                 intent.putExtra("nestea", nesteacont);
                 intent.putExtra("limon", limoncont);
