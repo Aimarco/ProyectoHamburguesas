@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".DatosHamburguesa" ></activity>
         <activity android:name=".pedidobebida"></activity>
+        <activity android:name=".infopedido"></activity>
     </application>
 
 </manifest>

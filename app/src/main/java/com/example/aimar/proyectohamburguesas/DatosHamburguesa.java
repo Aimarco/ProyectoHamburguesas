@@ -39,7 +39,7 @@ public class DatosHamburguesa extends AppCompatActivity {
         datonombre = (TextView) findViewById(R.id.txtnombrepas);
         datodir = (TextView) findViewById(R.id.txtdirecpas);
         datotlf = (TextView) findViewById(R.id.txttlfpas);
-        Bundle recibedatos = getIntent().getExtras();
+        final Bundle recibedatos = getIntent().getExtras();
         datonombre.setText(recibedatos.getString("nombre"));
         datodir.setText(recibedatos.getString("direccion"));
         datotlf.setText(recibedatos.getString("telefono"));
@@ -150,6 +150,7 @@ public class DatosHamburguesa extends AppCompatActivity {
 
         //cambio de cantidad para la hamburguesa clasica
         edtclasica.addTextChangedListener(new TextWatcher() {
+            float totalprovi;
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -159,14 +160,18 @@ public class DatosHamburguesa extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                float totalprovi;
-                totalprovi = calculoTotal(total,Integer.parseInt((String)s), 1);
+
+                totalprovi = calculoTotal(total,Integer.parseInt(edtclasica.getText().toString()), 1);
+                total=totalprovi;
+
+
                 edttotal.setText("" + totalprovi + "€");
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 //vacio
+
             }
         });
         //cambio de cantidad para la hamburguesa clasica+queso
@@ -180,9 +185,10 @@ public class DatosHamburguesa extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                float totalprovi;
-                totalprovi = calculoTotal(total,Integer.parseInt((String)s),2);
-                edttotal.setText("" + totalprovi + "€");}
+                float totalprovi2;
+                totalprovi2 = calculoTotal(total,Integer.parseInt(edtclasiqueso.getText().toString()),2);
+                total=totalprovi2;
+                edttotal.setText("" + totalprovi2 + "€");}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -200,9 +206,10 @@ public class DatosHamburguesa extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                float totalprovi;
-                totalprovi = calculoTotal(total,Integer.parseInt((String)s),2);
-                edttotal.setText("" + totalprovi + "€");}
+                float totalprovi3;
+                totalprovi3 = calculoTotal(total,Integer.parseInt(edtdobleq.getText().toString()),2);
+                total=totalprovi3;
+                edttotal.setText("" + totalprovi3 + "€");}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -221,9 +228,10 @@ public class DatosHamburguesa extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                float totalprovi;
-                totalprovi = calculoTotal(total,Integer.parseInt((String)s),2);
-                edttotal.setText("" + totalprovi + "€");}
+                float totalprovi4;
+                totalprovi4 = calculoTotal(total,Integer.parseInt(edtvegetal.getText().toString()),2);
+                total=totalprovi4;
+                edttotal.setText("" + totalprovi4 + "€");}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -242,9 +250,10 @@ public class DatosHamburguesa extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                float totalprovi;
-                totalprovi = calculoTotal(total,Integer.parseInt((String)s),3);
-                edttotal.setText("" + totalprovi + "€");}
+                float totalprovi5;
+                totalprovi5 = calculoTotal(total,Integer.parseInt(edtespecial.getText().toString()),3);
+                total=totalprovi5;
+                edttotal.setText("" + totalprovi5 + "€");}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -263,10 +272,15 @@ public class DatosHamburguesa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datHamburguesa.putExtra("clasica",edtclasica.getText().toString());
-                datHamburguesa.putExtra("calsiqueso",edtclasiqueso.getText().toString());
+                datHamburguesa.putExtra("clasiqueso",edtclasiqueso.getText().toString());
                 datHamburguesa.putExtra("dobleq",edtdobleq.getText().toString());
                 datHamburguesa.putExtra("vegetal",edtvegetal.getText().toString());
                 datHamburguesa.putExtra("especial",edtespecial.getText().toString());
+                datHamburguesa.putExtra("nombre", recibedatos.getString("nombre"));
+                datHamburguesa.putExtra("direccion",recibedatos.getString("direccion"));
+                datHamburguesa.putExtra("tlf",recibedatos.getString("telefono"));
+                datHamburguesa.putExtra("total",edttotal.getText().toString());
+
 
                 startActivity(datHamburguesa);
             }

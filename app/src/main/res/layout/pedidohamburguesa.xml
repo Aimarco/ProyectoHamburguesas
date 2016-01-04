@@ -123,55 +123,49 @@
         android:layout_height="wrap_content"
         android:id="@+id/cantclasica"
         android:hint="0"
-        android:text="0"
         android:numeric="integer"
-        android:layout_above="@+id/imgvegetal"
-        android:layout_alignLeft="@+id/imgvegetal"
-        android:layout_alignStart="@+id/imgvegetal" />
+        android:layout_below="@+id/imgclasica"
+        android:layout_alignRight="@+id/imgvegetal"
+        android:layout_alignEnd="@+id/imgvegetal" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cantclasqueso"
         android:hint="0"
-        android:text="0"
         android:numeric="integer"
-        android:layout_above="@+id/imgvegetal"
-        android:layout_alignLeft="@+id/imgespecial"
-        android:layout_alignStart="@+id/imgespecial" />
+        android:layout_below="@+id/imgclasqueso"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cantdoblequeso"
         android:numeric="integer"
-        android:text="0"
+        android:hint="0"
         android:layout_below="@+id/imgdobleq"
-        android:layout_alignLeft="@+id/imgdobleq"
-        android:layout_alignStart="@+id/imgdobleq"
-        android:hint="0" />
+        android:layout_alignRight="@+id/imgdobleq"
+        android:layout_alignEnd="@+id/imgdobleq" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cantvegetal"
         android:numeric="integer"
-        android:text="0"
+        android:hint="0"
         android:layout_below="@+id/imgvegetal"
-        android:layout_alignLeft="@+id/imgvegetal"
-        android:layout_alignStart="@+id/imgvegetal"
-        android:hint="0" />
+        android:layout_alignRight="@+id/txtnombrepas"
+        android:layout_alignEnd="@+id/txtnombrepas" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cantespecial"
         android:numeric="integer"
-        android:text="0"
+        android:hint="0"
         android:layout_below="@+id/imgespecial"
-        android:layout_alignLeft="@+id/imgespecial"
-        android:layout_alignStart="@+id/imgespecial"
-        android:hint="0" />
+        android:layout_alignLeft="@+id/cantclasqueso"
+        android:layout_alignStart="@+id/cantclasqueso" />
 
     <Button
         android:layout_width="wrap_content"
