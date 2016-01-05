@@ -34,7 +34,6 @@ public class pedidobebida extends AppCompatActivity {
     private int naranjacont=0;
     private int cocacolacont=0;
     private int cervezacont=0;
-    private Intent intent;
     private Intent datBebida;
 
 
@@ -60,7 +59,7 @@ public class pedidobebida extends AppCompatActivity {
         salir = (Button) findViewById(R.id.btnsalir);
         siguiente = (Button) findViewById(R.id.btnseguir);
        // mandadatoscli = new Intent(this, DatosHamburguesa.class);
-        intent = new Intent(this,infopedido.class);
+        datBebida = new Intent(this,infopedido.class);
 
         b_agua.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -102,10 +101,10 @@ public class pedidobebida extends AppCompatActivity {
                 total.setText(totalsum + "€");
             }
         });
-        b_cerveza.setOnClickListener(new View.OnClickListener(){
+        b_cerveza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                totalsum = totalsum +2;
+                totalsum = totalsum + 2;
                 cervezacont++;
                 total.setText(totalsum + "€");
             }
@@ -224,16 +223,15 @@ public class pedidobebida extends AppCompatActivity {
                 //vacio
             }
         });
-        datBebida=new Intent(this,infopedido.class);
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent.putExtra("agua", aguacont);
-                intent.putExtra("nestea", nesteacont);
-                intent.putExtra("limon", limoncont);
-                intent.putExtra("naranja", naranjacont);
-                intent.putExtra("cocacola",cocacolacont);
-                intent.putExtra("cerveza", cervezacont);
+                datBebida.putExtra("agua", aguacont);
+                datBebida.putExtra("nestea", nesteacont);
+                datBebida.putExtra("limon", limoncont);
+                datBebida.putExtra("naranja", naranjacont);
+                datBebida.putExtra("cocacola",cocacolacont);
+                datBebida.putExtra("cerveza", cervezacont);
 
                 startActivity(datBebida);
             }
