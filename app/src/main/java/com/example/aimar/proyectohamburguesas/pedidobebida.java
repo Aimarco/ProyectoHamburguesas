@@ -35,6 +35,7 @@ public class pedidobebida extends AppCompatActivity {
     private int cocacolacont=0;
     private int cervezacont=0;
     private Intent intent;
+    private Intent datBebida;
 
 
 
@@ -56,10 +57,10 @@ public class pedidobebida extends AppCompatActivity {
         b_naranja = (ImageButton) findViewById(R.id.imageButton4);
         b_cocacola = (ImageButton) findViewById(R.id.imageButton5);
         b_cerveza = (ImageButton) findViewById(R.id.imageButton6);
-        salir = (Button) findViewById(R.id.button);
-        siguiente = (Button) findViewById(R.id.button2);
-        intent = new Intent(this, infopedido.class);
-        final Bundle recibedatos = getIntent().getExtras();
+        salir = (Button) findViewById(R.id.btnsalir);
+        siguiente = (Button) findViewById(R.id.btnseguir);
+       // mandadatoscli = new Intent(this, DatosHamburguesa.class);
+        intent = new Intent(this,infopedido.class);
 
         b_agua.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -223,7 +224,7 @@ public class pedidobebida extends AppCompatActivity {
                 //vacio
             }
         });
-            int totalpasar;
+        datBebida=new Intent(this,infopedido.class);
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,17 +234,8 @@ public class pedidobebida extends AppCompatActivity {
                 intent.putExtra("naranja", naranjacont);
                 intent.putExtra("cocacola",cocacolacont);
                 intent.putExtra("cerveza", cervezacont);
-                intent.putExtra("clasica",recibedatos.getString("clasica"));
-                intent.putExtra("clasiqueso",recibedatos.getString("clasiqueso"));
-                intent.putExtra("dobleq",recibedatos.getString("dobleq"));
-                intent.putExtra("vegetal",recibedatos.getString("vegetal"));
-                intent.putExtra("especial",recibedatos.getString("especial"));
-                intent.putExtra("nombre", recibedatos.getString("nombre"));
-                intent.putExtra("direccion",recibedatos.getString("direccion"));
-                intent.putExtra("tlf",recibedatos.getString("tlf"));
-                intent.putExtra("total",(recibedatos.getString("total")+total.toString()));
-                startActivity(intent);
 
+                startActivity(datBebida);
             }
         });
     }
