@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class pedidobebida extends AppCompatActivity {
     private TextView total;
@@ -27,6 +28,7 @@ public class pedidobebida extends AppCompatActivity {
     private ImageButton b_cerveza;
     private Button salir;
     private Button siguiente;
+    private Button borrar;
     private int totalsum = 0;
     private int aguacont=0;
     private int nesteacont=0;
@@ -56,174 +58,105 @@ public class pedidobebida extends AppCompatActivity {
         b_naranja = (ImageButton) findViewById(R.id.imageButton4);
         b_cocacola = (ImageButton) findViewById(R.id.imageButton5);
         b_cerveza = (ImageButton) findViewById(R.id.imageButton6);
+        borrar = (Button)findViewById(R.id.button3);
         salir = (Button) findViewById(R.id.button);
         siguiente = (Button) findViewById(R.id.button2);
         intent = new Intent(this, infopedido.class);
         final Bundle recibedatos = getIntent().getExtras();
 
-        b_agua.setOnClickListener(new View.OnClickListener(){
+        b_agua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int totalagua;
                 totalsum++;
+                totalagua = totalsum;
                 aguacont++;
-                total.setText(totalsum + "€");
+                total.setText(totalagua + "€");
+                String cont = Integer.toString(aguacont);
+                agua.setText(cont);
+
             }
         });
-        b_nestea.setOnClickListener(new View.OnClickListener(){
+        b_nestea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 totalsum++;
                 nesteacont++;
                 total.setText(totalsum + "€");
+                String cont = Integer.toString(nesteacont);
+                nestea.setText(cont);
             }
         });
-        b_limon.setOnClickListener(new View.OnClickListener(){
+        b_limon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 totalsum++;
                 limoncont++;
                 total.setText(totalsum + "€");
+                String cont = Integer.toString(limoncont);
+                limon.setText(cont);
+
+
             }
         });
-        b_naranja.setOnClickListener(new View.OnClickListener(){
+        b_naranja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 totalsum++;
                 naranjacont++;
                 total.setText(totalsum + "€");
+                String cont = Integer.toString(naranjacont);
+                naranja.setText(cont);
+
+
             }
         });
-        b_cocacola.setOnClickListener(new View.OnClickListener(){
+        b_cocacola.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 totalsum++;
                 cocacolacont++;
                 total.setText(totalsum + "€");
+                String cont = Integer.toString(cocacolacont);
+                cocacola.setText(cont);
+
+
             }
         });
-        b_cerveza.setOnClickListener(new View.OnClickListener(){
+
+        b_cerveza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                totalsum = totalsum +2;
+                totalsum = totalsum + 2;
                 cervezacont++;
                 total.setText(totalsum + "€");
+                String cont = Integer.toString(cervezacont);
+                cerveza.setText(cont);
+
+
             }
         });
-        agua.addTextChangedListener(new TextWatcher() {
+        borrar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //vacio
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int cont = Integer.parseInt((String) s);
-                totalsum += cont;
-                aguacont += cont;
-                total.setText(totalsum + "€");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //vacio
-            }
-        });
-        nestea.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //vacio
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int cont = Integer.parseInt((String) s);
-                totalsum += cont;
-                nesteacont += cont;
-                total.setText(totalsum + "€");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //vacio
+            public void onClick(View v) {
+                totalsum = 0;
+                aguacont=0;
+                nesteacont=0;
+                limoncont=0;
+                naranjacont=0;
+                cocacolacont=0;
+                cervezacont=0;
+                agua.setText("");
+                nestea.setText("");
+                limon.setText("");
+                naranja.setText("");
+                cocacola.setText("");
+                cerveza.setText("");
+                total.setText("0 €");
+                Toast.makeText(getApplicationContext(), "Se han borrado las bebidas", Toast.LENGTH_SHORT).show();
             }
         });
-        limon.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //vacio
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int cont = Integer.parseInt((String) s);
-                totalsum += cont;
-                limoncont += cont;
-                total.setText(totalsum + "€");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //vacio
-            }
-        });
-        naranja.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //vacio
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int cont = Integer.parseInt((String) s);
-                totalsum += cont;
-                naranjacont += cont;
-                total.setText(totalsum + "€");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //vacio
-            }
-        });
-        cocacola.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //vacio
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int cont = Integer.parseInt((String) s);
-                totalsum += cont;
-                cocacolacont += cont;
-                total.setText(totalsum + "€");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //vacio
-            }
-        });
-        cerveza.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //vacio
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                int cont = Integer.parseInt((String) s);
-                totalsum += (cont*2);
-                cervezacont += cont;
-                total.setText(totalsum + "€");
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //vacio
-            }
-        });
-        int totalpasar;
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -246,6 +179,7 @@ public class pedidobebida extends AppCompatActivity {
 
             }
         });
+
     }
 
 }
