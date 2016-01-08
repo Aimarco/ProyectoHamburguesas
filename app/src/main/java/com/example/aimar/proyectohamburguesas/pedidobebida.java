@@ -133,6 +133,9 @@ public class pedidobebida extends AppCompatActivity {
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int totalham= Integer.parseInt(recibedatos.getString("total")+total.toString());
+                int total2= totalham + totalsum;
+
                 intent.putExtra("agua", aguacont);
                 intent.putExtra("nestea", nesteacont);
                 intent.putExtra("limon", limoncont);
@@ -147,7 +150,7 @@ public class pedidobebida extends AppCompatActivity {
                 intent.putExtra("nombre", recibedatos.getString("nombre"));
                 intent.putExtra("direccion",recibedatos.getString("direccion"));
                 intent.putExtra("tlf",recibedatos.getString("tlf"));
-                intent.putExtra("total",(recibedatos.getString("total")+total.toString()));
+                intent.putExtra("total",total2);
                 startActivity(intent);
 
             }
@@ -184,5 +187,7 @@ public class pedidobebida extends AppCompatActivity {
         }
         fact.setText(cadena);
     }
-
+    public void salir(View view){
+        finish();
+    }
 }

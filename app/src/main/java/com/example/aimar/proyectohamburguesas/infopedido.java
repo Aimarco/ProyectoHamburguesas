@@ -39,13 +39,13 @@ private TextView nombre,direccion,tlf,clasica,clasiqueso,dobleq,vegetal,especial
         dobleq.setText(dobleq.getText()+""+cogerinfo.getString("dobleq"));
         vegetal.setText(vegetal.getText()+""+cogerinfo.getString("vegetal"));
         especial.setText(especial.getText()+""+cogerinfo.getString("especial"));
-        /*agua.setText(cogerinfo.getString("agua"));
+        agua.setText(cogerinfo.getString("agua"));
         nestea.setText(cogerinfo.getString("nestea"));
         limon.setText(cogerinfo.getString("limon"));
         naranja.setText(cogerinfo.getString("naranja"));
         cola.setText(cogerinfo.getString("cocacola"));
         cerveza.setText(cogerinfo.getString("cerveza"));
-        total.setText(cogerinfo.getString("total"));*/
+        total.setText(cogerinfo.getString("total"));
 
 
 
