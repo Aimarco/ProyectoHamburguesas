@@ -3,8 +3,6 @@ package com.example.aimar.proyectohamburguesas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,12 +12,7 @@ import android.widget.Toast;
 
 public class pedidobebida extends AppCompatActivity {
     private TextView total;
-    private EditText agua;
-    private EditText nestea;
-    private EditText limon;
-    private EditText naranja;
-    private EditText cocacola;
-    private EditText cerveza;
+    private TextView fact;
     private ImageButton b_agua;
     private ImageButton b_nestea;
     private ImageButton b_limon;
@@ -46,12 +39,7 @@ public class pedidobebida extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidobebida);
         total = (TextView) findViewById(R.id.textView5);
-        agua = (EditText) findViewById(R.id.editText);
-        nestea = (EditText) findViewById(R.id.editText2);
-        limon = (EditText) findViewById(R.id.editText3);
-        naranja = (EditText) findViewById(R.id.editText4);
-        cocacola = (EditText) findViewById(R.id.editText5);
-        cerveza = (EditText) findViewById(R.id.editText6);
+        fact = (TextView) findViewById(R.id.textView9);
         b_agua = (ImageButton) findViewById(R.id.imageButton);
         b_nestea = (ImageButton) findViewById(R.id.imageButton2);
         b_limon = (ImageButton) findViewById(R.id.imageButton3);
@@ -72,8 +60,7 @@ public class pedidobebida extends AppCompatActivity {
                 totalagua = totalsum;
                 aguacont++;
                 total.setText(totalagua + "€");
-                String cont = Integer.toString(aguacont);
-                agua.setText(cont);
+                texto();
 
             }
         });
@@ -83,8 +70,7 @@ public class pedidobebida extends AppCompatActivity {
                 totalsum++;
                 nesteacont++;
                 total.setText(totalsum + "€");
-                String cont = Integer.toString(nesteacont);
-                nestea.setText(cont);
+                texto();
             }
         });
         b_limon.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +79,7 @@ public class pedidobebida extends AppCompatActivity {
                 totalsum++;
                 limoncont++;
                 total.setText(totalsum + "€");
-                String cont = Integer.toString(limoncont);
-                limon.setText(cont);
+                texto();
 
 
             }
@@ -105,8 +90,7 @@ public class pedidobebida extends AppCompatActivity {
                 totalsum++;
                 naranjacont++;
                 total.setText(totalsum + "€");
-                String cont = Integer.toString(naranjacont);
-                naranja.setText(cont);
+                texto();
 
 
             }
@@ -117,10 +101,7 @@ public class pedidobebida extends AppCompatActivity {
                 totalsum++;
                 cocacolacont++;
                 total.setText(totalsum + "€");
-                String cont = Integer.toString(cocacolacont);
-                cocacola.setText(cont);
-
-
+                texto();
             }
         });
 
@@ -130,10 +111,7 @@ public class pedidobebida extends AppCompatActivity {
                 totalsum = totalsum + 2;
                 cervezacont++;
                 total.setText(totalsum + "€");
-                String cont = Integer.toString(cervezacont);
-                cerveza.setText(cont);
-
-
+                texto();
             }
         });
         borrar.setOnClickListener(new View.OnClickListener() {
@@ -146,12 +124,7 @@ public class pedidobebida extends AppCompatActivity {
                 naranjacont=0;
                 cocacolacont=0;
                 cervezacont=0;
-                agua.setText("");
-                nestea.setText("");
-                limon.setText("");
-                naranja.setText("");
-                cocacola.setText("");
-                cerveza.setText("");
+                fact.setText("");
                 total.setText("0 €");
                 Toast.makeText(getApplicationContext(), "Se han borrado las bebidas", Toast.LENGTH_SHORT).show();
             }
@@ -180,6 +153,36 @@ public class pedidobebida extends AppCompatActivity {
             }
         });
 
+
+    }
+    public void texto(){
+        String cadena= "";
+        String cont;
+        if (aguacont!=0){
+            cont = Integer.toString(aguacont);
+            cadena=cadena+(" agua: "+cont+"\n");
+        }
+        if (nesteacont!=0){
+            cont = Integer.toString(nesteacont);
+            cadena+=(" nestea: "+cont+"\n");
+        }
+        if (limoncont!=0){
+            cont = Integer.toString(limoncont);
+            cadena+=(" limon: "+cont+"\n");
+        }
+        if (naranjacont!=0){
+            cont = Integer.toString(naranjacont);
+            cadena+=(" naranja: "+cont+"\n");
+        }
+        if (cocacolacont!=0){
+            cont = Integer.toString(cocacolacont);
+            cadena+=(" cocacola: "+cont+"\n");
+        }
+        if (cervezacont!=0){
+            cont = Integer.toString(cervezacont);
+            cadena+=(" cerveza: "+cont+"\n");
+        }
+        fact.setText(cadena);
     }
 
 }
