@@ -197,20 +197,40 @@
         android:editable="false"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:layout_alignBottom="@+id/edtTotal"
-        android:layout_alignLeft="@+id/imgclasica"
-        android:layout_alignStart="@+id/imgclasica" />
+        android:layout_above="@+id/salir"
+        android:layout_toRightOf="@+id/imgclasica"
+        android:layout_toEndOf="@+id/imgclasica" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/edtTotal"
-        android:layout_toRightOf="@+id/textView3"
         android:textSize="20dp"
         android:textStyle="bold"
         android:editable="false"
-        android:layout_alignRight="@+id/txtdirecpas"
-        android:layout_alignEnd="@+id/txtdirecpas"
-        android:layout_below="@+id/cantespecial" />
+        android:layout_above="@+id/btnseguir"
+        android:layout_toRightOf="@+id/imgespecial"
+        android:layout_toEndOf="@+id/imgespecial" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/aniadepedido"
+        android:id="@+id/btnaniadepedido"
+        style="@android:style/Holo.Light.SegmentedButton"
+        android:layout_below="@+id/cantespecial"
+        android:layout_toRightOf="@+id/edtTotal"
+        android:layout_toEndOf="@+id/edtTotal" />
+
+    <Button
+        style="@android:style/Holo.Light.SegmentedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/modpedido"
+        android:id="@+id/btnmodif"
+        android:layout_above="@+id/edtTotal"
+        android:layout_alignLeft="@+id/imgvegetal"
+        android:layout_alignStart="@+id/imgvegetal"
+        android:visibility="gone" />
 
 </RelativeLayout>

@@ -133,15 +133,15 @@ public class pedidobebida extends AppCompatActivity {
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int totalham= Integer.parseInt(recibedatos.getString("total")+total.toString());
-                int total2= totalham + totalsum;
+                float totalham= Float.valueOf(recibedatos.getString("total").toString());
+                float total2= totalham + totalsum;
 
-                intent.putExtra("agua", aguacont);
-                intent.putExtra("nestea", nesteacont);
-                intent.putExtra("limon", limoncont);
-                intent.putExtra("naranja", naranjacont);
-                intent.putExtra("cocacola",cocacolacont);
-                intent.putExtra("cerveza", cervezacont);
+                intent.putExtra("agua", Integer.toString(aguacont));
+                intent.putExtra("nestea", Integer.toString(nesteacont));
+                intent.putExtra("limon", Integer.toString(limoncont));
+                intent.putExtra("naranja", Integer.toString(naranjacont));
+                intent.putExtra("cocacola",Integer.toString(cocacolacont));
+                intent.putExtra("cerveza", Integer.toString(cervezacont));
                 intent.putExtra("clasica",recibedatos.getString("clasica"));
                 intent.putExtra("clasiqueso",recibedatos.getString("clasiqueso"));
                 intent.putExtra("dobleq",recibedatos.getString("dobleq"));
@@ -150,7 +150,7 @@ public class pedidobebida extends AppCompatActivity {
                 intent.putExtra("nombre", recibedatos.getString("nombre"));
                 intent.putExtra("direccion",recibedatos.getString("direccion"));
                 intent.putExtra("tlf",recibedatos.getString("tlf"));
-                intent.putExtra("total",total2);
+                intent.putExtra("total",Float.toString(total2));
                 startActivity(intent);
 
             }

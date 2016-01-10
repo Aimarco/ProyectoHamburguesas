@@ -24,4 +24,7 @@
     <string name="Aceptar">Aceptar</string>
     <string name="Rechazar">Rechazar</string>
     <string name="borrar">borrar</string>
-</resources>
+    <string name="aniadepedido">Añadir al pedido</string>
+    <string name="modpedido">Modificar pedido</string>
+    <string name="regalo">REGALO!!</string>
+    </resources>

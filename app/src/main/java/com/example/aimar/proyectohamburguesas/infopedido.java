@@ -1,15 +1,23 @@
 package com.example.aimar.proyectohamburguesas;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by adminportatil on 18/12/2015.
  */
 public class infopedido extends AppCompatActivity {
-private TextView nombre,direccion,tlf,clasica,clasiqueso,dobleq,vegetal,especial,agua,nestea,limon,naranja,cola,cerveza,total;
-
+private TextView nombre,direccion,tlf,clasica,clasiqueso,dobleq,vegetal,especial,agua,nestea,limon,naranja,cola,cerveza,total,premio;
+private ImageView imagenpremio;
+    private Button aceptar,rechazar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.infopedido);
@@ -29,8 +37,12 @@ private TextView nombre,direccion,tlf,clasica,clasiqueso,dobleq,vegetal,especial
         cola=(TextView) findViewById(R.id.cola);
         cerveza=(TextView) findViewById(R.id.cerveza);
         total=(TextView) findViewById(R.id.total);
+        imagenpremio=(ImageView) findViewById(R.id.imagenPremio);
+        aceptar=(Button) findViewById(R.id.btnaceptar);
+        rechazar=(Button) findViewById(R.id.btnrechazar);
+        premio=(TextView) findViewById(R.id.txtpremio);
 
-        //asignamos valor a todos los TextView mediante elpase de Extras de la Intent
+        //asignamos valor a todos los TextView mediante el pase de Extras de la Intent
         nombre.setText(cogerinfo.getString("nombre"));
         direccion.setText(cogerinfo.getString("direccion"));
         tlf.setText(cogerinfo.getString("tlf"));
@@ -39,14 +51,37 @@ private TextView nombre,direccion,tlf,clasica,clasiqueso,dobleq,vegetal,especial
         dobleq.setText(dobleq.getText()+""+cogerinfo.getString("dobleq"));
         vegetal.setText(vegetal.getText()+""+cogerinfo.getString("vegetal"));
         especial.setText(especial.getText()+""+cogerinfo.getString("especial"));
-        agua.setText(cogerinfo.getString("agua"));
-        nestea.setText(cogerinfo.getString("nestea"));
-        limon.setText(cogerinfo.getString("limon"));
-        naranja.setText(cogerinfo.getString("naranja"));
-        cola.setText(cogerinfo.getString("cocacola"));
-        cerveza.setText(cogerinfo.getString("cerveza"));
-        total.setText(cogerinfo.getString("total"));
+        agua.setText(agua.getText()+""+cogerinfo.getString("agua"));
+        nestea.setText(nestea.getText()+""+cogerinfo.getString("nestea"));
+        limon.setText(limon.getText()+""+cogerinfo.getString("limon"));
+        naranja.setText(naranja.getText()+""+cogerinfo.getString("naranja"));
+        cola.setText(cola.getText()+""+cogerinfo.getString("cocacola"));
+        cerveza.setText(cerveza.getText() + "" + cogerinfo.getString("cerveza"));
+        total.setText(total.getText()+""+cogerinfo.getString("total"));
+//vamos a crear un objeto drawable para asignarle diferentes imagenes al imageView
 
+        if(Float.valueOf(total.getText().toString().substring(6, 10))>15){
+            imagenpremio.setImageDrawable(getResources().getDrawable(R.drawable.pandroid));
+            premio.setVisibility(View.VISIBLE);}
+        else if(Float.valueOf(total.getText().toString().substring(6, 10))>25){
+            imagenpremio.setImageDrawable(getResources().getDrawable(R.drawable.tickets));
+                premio.setVisibility(View.VISIBLE);}
+
+
+        aceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(infopedido.this, "Gracias por confiar en nosotros.", Toast.LENGTH_SHORT).show();
+                setContentView(R.layout.activity_datos_cliente);
+            }
+        });
+
+        rechazar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 
