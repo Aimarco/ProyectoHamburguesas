@@ -2,6 +2,7 @@ package com.example.aimar.proyectohamburguesas;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +16,10 @@ import android.widget.Toast;
  * Created by adminportatil on 18/12/2015.
  */
 public class infopedido extends AppCompatActivity {
-private TextView nombre,direccion,tlf,clasica,clasiqueso,dobleq,vegetal,especial,agua,nestea,limon,naranja,cola,cerveza,total,premio;
+private TextView nombre,direccion,tlf,clasica,clasiqueso,dobleq,vegetal,especial,agua,nestea,limon,naranja,cola,cerveza,total,premio,tamanio,tcarne;
 private ImageView imagenpremio;
     private Button aceptar,rechazar;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.infopedido);
@@ -41,6 +43,8 @@ private ImageView imagenpremio;
         aceptar=(Button) findViewById(R.id.btnaceptar);
         rechazar=(Button) findViewById(R.id.btnrechazar);
         premio=(TextView) findViewById(R.id.txtpremio);
+        tamanio=(TextView) findViewById(R.id.Tamanio);
+        tcarne=(TextView) findViewById(R.id.Tcarne);
 
         //asignamos valor a todos los TextView mediante el pase de Extras de la Intent
         nombre.setText(cogerinfo.getString("nombre"));
@@ -58,13 +62,16 @@ private ImageView imagenpremio;
         cola.setText(cola.getText()+""+cogerinfo.getString("cocacola"));
         cerveza.setText(cerveza.getText() + "" + cogerinfo.getString("cerveza"));
         total.setText(total.getText()+""+cogerinfo.getString("total"));
+        tamanio.setText(tamanio.getText().toString()+""+cogerinfo.getString("tamanio"));
+        tcarne.setText(tcarne.getText().toString()+""+cogerinfo.getString("tcarne"));
+
 //vamos a crear un objeto drawable para asignarle diferentes imagenes al imageView
 
-        if(Float.valueOf(total.getText().toString().substring(6, 10))>15){
+        if(Float.valueOf(total.getText().toString().substring(6, 10))>15 && Float.valueOf(total.getText().toString().substring(6, 10))<25 ){
             imagenpremio.setImageDrawable(getResources().getDrawable(R.drawable.pandroid));
             premio.setVisibility(View.VISIBLE);}
         else if(Float.valueOf(total.getText().toString().substring(6, 10))>25){
-            imagenpremio.setImageDrawable(getResources().getDrawable(R.drawable.tickets));
+            imagenpremio.setImageDrawable(getResources().getDrawable(R.drawable.premiogordo));
                 premio.setVisibility(View.VISIBLE);}
 
 
@@ -72,13 +79,16 @@ private ImageView imagenpremio;
             @Override
             public void onClick(View v) {
                 Toast.makeText(infopedido.this, "Gracias por confiar en nosotros.", Toast.LENGTH_SHORT).show();
-                setContentView(R.layout.activity_datos_cliente);
+               setContentView(R.layout.activity_datos_cliente);
+                finish();
             }
         });
 
         rechazar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(infopedido.this, "Hasta la proxima!", Toast.LENGTH_SHORT).show();
+                //setContentView(R.layout.activity_datos_cliente);
                 finish();
             }
         });

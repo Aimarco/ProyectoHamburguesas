@@ -155,10 +155,14 @@ public class DatosHamburguesa extends AppCompatActivity {
         aniadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (sptamaño.getSelectedItemPosition() == 0 || sptipocarne.getSelectedItemPosition() == 0)
+                if (sptamaño.getSelectedItemPosition() == 0 || sptipocarne.getSelectedItemPosition() == 0){
                     Toast.makeText(DatosHamburguesa.this, "Por favor seleccione el tamaño o el tipo de la carne que desee", Toast.LENGTH_SHORT).show();
-                if (edtvegetal.getText().toString().equals("") && edtclasica.getText().toString().equals("") && edtclasiqueso.getText().toString().equals("") && edtdobleq.getText().toString().equals("") && edtespecial.getText().toString().equals(""))
+                    aniadir.setVisibility(View.VISIBLE);
+                    modificar.setVisibility(View.GONE);}
+                if (edtvegetal.getText().toString().equals("") && edtclasica.getText().toString().equals("") && edtclasiqueso.getText().toString().equals("") && edtdobleq.getText().toString().equals("") && edtespecial.getText().toString().equals("")){
                     Toast.makeText(DatosHamburguesa.this, "Por favor seleccione por lo menos un tipo de hamburguesa", Toast.LENGTH_SHORT).show();
+                aniadir.setVisibility(View.VISIBLE);
+                modificar.setVisibility(View.GONE);}
                 else if (!edtclasica.getText().toString().equals(""))
                     cantclasica = Integer.parseInt(edtclasica.getText().toString()) * 1;
                 else
@@ -183,6 +187,7 @@ public class DatosHamburguesa extends AppCompatActivity {
                 total = Float.valueOf(edttotal.getText().toString().substring(0, 3)) + (cantclasica + cantclasiqueso + cantdoble + cantvegetal + cantespecial);
                 edttotal.setText(total + "€");
 
+                DesactivarControles(edtclasica,edtclasiqueso,edtdobleq,edtvegetal, edtespecial);
                 aniadir.setVisibility(View.GONE);
                 modificar.setVisibility(View.VISIBLE);
 
@@ -200,6 +205,7 @@ modificar.setOnClickListener(new View.OnClickListener() {
         edtvegetal.setText("");
         edtespecial.setText("");
         edttotal.setText("");
+        ActivarControles(edtclasica,edtclasiqueso,edtdobleq,edtvegetal, edtespecial);
         aniadir.setVisibility(View.VISIBLE);
         modificar.setVisibility(View.GONE);
     }
@@ -227,14 +233,30 @@ modificar.setOnClickListener(new View.OnClickListener() {
                 datHamburguesa.putExtra("direccion",recibedatos.getString("direccion"));
                 datHamburguesa.putExtra("tlf",recibedatos.getString("telefono"));
                 datHamburguesa.putExtra("total", Float.toString(total));
+                datHamburguesa.putExtra("tamanio",sptamaño.getSelectedItem().toString());
+                datHamburguesa.putExtra("tcarne",sptipocarne.getSelectedItem().toString());
 
 
 
-                startActivity(datHamburguesa);}
+
+                startActivity(datHamburguesa);finish();}
+
+
+
 
             }
+
         });
 
+
+        //programacion del boton salir
+
+        salir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -258,6 +280,20 @@ modificar.setOnClickListener(new View.OnClickListener() {
         else
         total=total;
         return total;
+    }
+    public static void DesactivarControles(EditText edtclasica,EditText edtclasiqueso,EditText edtdobleq,EditText edtvegetal,EditText edtespecial){
+        edtclasica.setEnabled(false);
+        edtclasiqueso.setEnabled(false);
+        edtdobleq.setEnabled(false);
+        edtvegetal.setEnabled(false);
+        edtespecial.setEnabled(false);
+    }
+    public static void ActivarControles(EditText edtclasica,EditText edtclasiqueso,EditText edtdobleq,EditText edtvegetal,EditText edtespecial){
+        edtclasica.setEnabled(true);
+        edtclasiqueso.setEnabled(true);
+        edtdobleq.setEnabled(true);
+        edtvegetal.setEnabled(true);
+        edtespecial.setEnabled(true);
     }
 
 }

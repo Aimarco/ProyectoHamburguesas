@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:background="#f94327">
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,40 +52,65 @@
         android:textSize="30dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/clasica"
-        android:id="@+id/clasica"
-        android:textSize="20dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:id="@+id/scrollView" >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/clasiqueso"
-        android:id="@+id/clasiqueso"
-        android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clasica"
+            android:id="@+id/clasica"
+            android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clasiqueso"
+            android:id="@+id/clasiqueso"
+            android:textSize="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dobleq"
-        android:id="@+id/doblequeso"
-        android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dobleq"
+            android:id="@+id/doblequeso"
+            android:textSize="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/vegetal"
-        android:id="@+id/vegetal"
-        android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vegetal"
+            android:id="@+id/vegetal"
+            android:textSize="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/especial"
-        android:id="@+id/especial"
-        android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/especial"
+            android:id="@+id/especial"
+            android:textSize="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tamanio"
+                android:id="@+id/Tamanio"
+                android:textSize="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tcarne"
+                android:id="@+id/Tcarne"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
 
     <View
         android:layout_width="fill_parent"
@@ -209,6 +236,7 @@
             android:layout_alignStart="@+id/btnaceptar"
             android:visibility="gone"
             android:text="@string/regalo" />
+
     </RelativeLayout>
 
 </LinearLayout>

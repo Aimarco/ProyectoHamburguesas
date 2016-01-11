@@ -150,8 +150,11 @@ public class pedidobebida extends AppCompatActivity {
                 intent.putExtra("nombre", recibedatos.getString("nombre"));
                 intent.putExtra("direccion",recibedatos.getString("direccion"));
                 intent.putExtra("tlf",recibedatos.getString("tlf"));
+                intent.putExtra("tamanio",recibedatos.getString("tamanio"));
+                intent.putExtra("tcarne",recibedatos.getString("tcarne"));
                 intent.putExtra("total",Float.toString(total2));
                 startActivity(intent);
+                finish();
 
             }
         });
