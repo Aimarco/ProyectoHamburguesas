@@ -171,36 +171,38 @@ public class DatosHamburguesa extends AppCompatActivity {
                     modificar.setVisibility(View.GONE);}
                 if (edtvegetal.getText().toString().equals("") && edtclasica.getText().toString().equals("") && edtclasiqueso.getText().toString().equals("") && edtdobleq.getText().toString().equals("") && edtespecial.getText().toString().equals("")){
                     Toast.makeText(DatosHamburguesa.this, "Por favor seleccione por lo menos un tipo de hamburguesa", Toast.LENGTH_SHORT).show();
-                aniadir.setVisibility(View.VISIBLE);
-                modificar.setVisibility(View.GONE);}
-                else if (!edtclasica.getText().toString().equals(""))
-                    cantclasica = Integer.parseInt(edtclasica.getText().toString()) * 1;
-                else
+                //aniadir.setVisibility(View.VISIBLE);
+                //modificar.setVisibility(View.GONE);
+                }
+
+                else {
                     cantclasica = 0;
-                if (!edtclasiqueso.getText().toString().equals(""))
-                    cantclasiqueso = Integer.parseInt(edtclasiqueso.getText().toString()) * 2;
-                else
-                    cantclasiqueso = 0;
-                if (!edtdobleq.getText().toString().equals(""))
-                    cantdoble = Integer.parseInt(edtdobleq.getText().toString()) * 2;
-                else
-                    cantdoble = 0;
-                if (!edtvegetal.getText().toString().equals(""))
-                    cantvegetal = Integer.parseInt(edtvegetal.getText().toString()) * 2;
-                else
-                    cantvegetal = 0;
-                if (!edtespecial.getText().toString().equals(""))
-                    cantespecial = Integer.parseInt(edtespecial.getText().toString()) * 3;
-                else
-                    cantespecial = 0;
+                    if (!edtclasica.getText().toString().equals(""))
+                        cantclasica = Integer.parseInt(edtclasica.getText().toString()) * 1;
+                    if (!edtclasiqueso.getText().toString().equals(""))
+                        cantclasiqueso = Integer.parseInt(edtclasiqueso.getText().toString()) * 2;
+                    else
+                        cantclasiqueso = 0;
+                    if (!edtdobleq.getText().toString().equals(""))
+                        cantdoble = Integer.parseInt(edtdobleq.getText().toString()) * 2;
+                    else
+                        cantdoble = 0;
+                    if (!edtvegetal.getText().toString().equals(""))
+                        cantvegetal = Integer.parseInt(edtvegetal.getText().toString()) * 2;
+                    else
+                        cantvegetal = 0;
+                    if (!edtespecial.getText().toString().equals(""))
+                        cantespecial = Integer.parseInt(edtespecial.getText().toString()) * 3;
+                    else
+                        cantespecial = 0;
 
-                total = Float.valueOf(edttotal.getText().toString().substring(0, 3)) + (cantclasica + cantclasiqueso + cantdoble + cantvegetal + cantespecial);
-                edttotal.setText(total + "€");
+                    total = Float.valueOf(edttotal.getText().toString().substring(0, 3)) + (cantclasica + cantclasiqueso + cantdoble + cantvegetal + cantespecial);
+                    edttotal.setText(total + "€");
 
-                DesactivarControles(edtclasica,edtclasiqueso,edtdobleq,edtvegetal, edtespecial);
-                aniadir.setVisibility(View.GONE);
-                modificar.setVisibility(View.VISIBLE);
-
+                    DesactivarControles(edtclasica, edtclasiqueso, edtdobleq, edtvegetal, edtespecial);
+                    aniadir.setVisibility(View.GONE);
+                    modificar.setVisibility(View.VISIBLE);
+                }
             }
         });
         //modificar el pedido,llevando a la posicion 0 al spinner y los edt volviendolos al valor vacio,mostrar el boton de añadir pedido y ocultar el de modificarlo
