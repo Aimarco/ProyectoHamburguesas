@@ -28,5 +28,13 @@
     <string name="modpedido">Modificar pedido</string>
     <string name="regalo">REGALO!!</string>
     <string name="tamanio">Tamaño del menu:</string>
+    <string name="autores">Autores:Aimar Correyero y Diego Martínez</string>
+    <string name="Version">Version Actual:1.0.2</string>
+    <string name="verApi">Version de la API:24</string>
+    <string name="verAndroid">Version Android: 4.4</string>
+    <string name="Empresa">Empresa:2DM3</string>
     <string name="tcarne">Tipo de carne:</string>
+    <string name="datostitulo">Datos de la App </string>
+
+
     </resources>

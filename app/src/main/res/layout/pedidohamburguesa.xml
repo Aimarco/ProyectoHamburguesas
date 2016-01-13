@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f94327">
+    android:background="#B8E2EF">
 
     <TextView
         android:layout_width="wrap_content"
@@ -175,7 +175,8 @@
         style="@android:style/Holo.Light.SegmentedButton"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/imgvegetal"
-        android:layout_alignEnd="@+id/imgvegetal" />
+        android:layout_alignEnd="@+id/imgvegetal"
+        android:backgroundTint="#f83d3d" />
 
     <Button
         android:layout_width="wrap_content"
@@ -185,7 +186,8 @@
         style="@android:style/Holo.Light.SegmentedButton"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/imgdobleq"
-        android:layout_alignEnd="@+id/imgdobleq" />
+        android:layout_alignEnd="@+id/imgdobleq"
+        android:backgroundTint="#14f72e" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -220,7 +222,8 @@
         style="@android:style/Holo.Light.SegmentedButton"
         android:layout_below="@+id/cantespecial"
         android:layout_toRightOf="@+id/edtTotal"
-        android:layout_toEndOf="@+id/edtTotal" />
+        android:layout_toEndOf="@+id/edtTotal"
+        android:backgroundTint="#fcfef713" />
 
     <Button
         style="@android:style/Holo.Light.SegmentedButton"
@@ -231,6 +234,7 @@
         android:layout_above="@+id/edtTotal"
         android:layout_alignLeft="@+id/imgvegetal"
         android:layout_alignStart="@+id/imgvegetal"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:backgroundTint="#fcfef713" />
 
 </RelativeLayout>

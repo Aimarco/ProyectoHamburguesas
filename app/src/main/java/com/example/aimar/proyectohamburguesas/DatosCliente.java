@@ -6,15 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class DatosCliente extends AppCompatActivity {
     private EditText nombre;
     private EditText direccion;
     private EditText telefono;
-    private Intent mandadatoscli;
+    private Intent mandadatoscli,datosapp;
     private Button salir;
     private Button seguir;
+    private ImageButton imgInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class DatosCliente extends AppCompatActivity {
         salir = (Button) findViewById(R.id.btnsalir);
         seguir = (Button) findViewById(R.id.btnseguir);
         mandadatoscli = new Intent(this, DatosHamburguesa.class);
+        imgInfo=(ImageButton) findViewById(R.id.imgbinfo);
+        datosapp=new Intent(this,DatosApp.class);
 
 
 
@@ -63,5 +67,14 @@ public class DatosCliente extends AppCompatActivity {
                 finish();
             }
         });
+
+        imgInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(datosapp);
+            }
+        });
+
+
     }
 }

@@ -15,6 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DatosApp" ></activity>
         <activity android:name=".DatosHamburguesa" ></activity>
         <activity android:name=".pedidobebida"></activity>
         <activity android:name=".infopedido"></activity>
