@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class pedidobebida extends AppCompatActivity {
+    //instanciacion de Objetos necasario
     private TextView total;
     private TextView fact;
     private ImageButton b_agua;
@@ -30,12 +31,13 @@ public class pedidobebida extends AppCompatActivity {
     private int cocacolacont=0;
     private int cervezacont=0;
     private Intent intent;
-
+//find e instanciacion de objetos necesarios
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Inicializacion de elementos instanciados
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidobebida);
         total = (TextView) findViewById(R.id.textView5);
@@ -51,7 +53,9 @@ public class pedidobebida extends AppCompatActivity {
         siguiente = (Button) findViewById(R.id.button2);
         intent = new Intent(this, infopedido.class);
         final Bundle recibedatos = getIntent().getExtras();
+        //fin inicialización
 
+        //Programación de los imageButton de cada una de las bebidas
         b_agua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +118,10 @@ public class pedidobebida extends AppCompatActivity {
                 texto();
             }
         });
+
+        //fin programación ImageButton de bebidas
+
+        //Programación del boton de borrar las pedidas seleccionadas
         borrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +137,7 @@ public class pedidobebida extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Se han borrado las bebidas", Toast.LENGTH_SHORT).show();
             }
         });
-
+            //Mandar datos de hamburguesas y bebidas
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,6 +169,7 @@ public class pedidobebida extends AppCompatActivity {
 
 
     }
+    //Gracias a este metodo,imprimimos el texto debajo de los imageButton
     public void texto(){
         String cadena= "";
         String cont;

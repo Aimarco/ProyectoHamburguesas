@@ -27,6 +27,10 @@ public class DatosCliente extends AppCompatActivity {
         seguir = (Button) findViewById(R.id.btnseguir);
         mandadatoscli = new Intent(this, DatosHamburguesa.class);
 
+
+
+        //Programacion de botones Seguir y Salir Con validaciones en los 3 campos
+
         seguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

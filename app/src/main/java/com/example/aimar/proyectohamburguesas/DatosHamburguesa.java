@@ -29,6 +29,9 @@ public class DatosHamburguesa extends AppCompatActivity {
     private Button seguir,salir,aniadir,modificar;
     private int totalhamburguesas;
     private int cantclasica,cantclasiqueso,cantdoble,cantvegetal,cantespecial;
+
+    //fin de la declaración de elementos necesarios
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,32 +48,37 @@ public class DatosHamburguesa extends AppCompatActivity {
         datodir.setText(recibedatos.getString("direccion"));
         datotlf.setText(recibedatos.getString("telefono"));
         edttotal = (EditText) findViewById(R.id.edtTotal);
+        totalhamburguesas=0;
+        aniadir=(Button) findViewById(R.id.btnaniadepedido);
+        modificar=(Button) findViewById(R.id.btnmodif);
+
         //Declaramos el spinner y el array de valores para cada spinner
+
         sptamaño = (Spinner) findViewById(R.id.spintamaño);
         sptipocarne = (Spinner) findViewById(R.id.spicarne);
         String[] tamaño = {"Seleccione tamaño de la hamburguesa", "Normal-5,50€", "Whoper-6,50€"};
         sptamaño.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tamaño));
         String[] tcarne = {"Seleccione tipo de carne", "Buey +2€", "Pollo +1€ ", "Ternera +3€"};
         sptipocarne.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tcarne));
-        totalhamburguesas=0;
-        //programamos el comportamiento de los spinner(en nuestro caso cuando elija un tamaño y tipo de carne este se sumara al TOTAL
-        edttotal = (EditText) findViewById(R.id.edtTotal);
-        aniadir=(Button) findViewById(R.id.btnaniadepedido);
-        modificar=(Button) findViewById(R.id.btnmodif);
 
+
+        //fin de la inicialización de los elementos arriba declarados.
+
+        //Programaremos el comportamiento de los spinner,para que cuando cambie el valor de cada uno de ellos
+        //automaticamente su precio se sume al total
 
         sptamaño.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 totaltamanio = 0;
                 switch (position) {
-                    case 0:
+                    case 0:             //Caso del texto informativo
                         totaltamanio += 0;
                         // edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
                         edttotal.setText("" + total + "€");
                         break;
-                    case 1:
+                    case 1:             //Caso del tamaño grande,incrementa 5,5
                         totaltamanio += 5.50;
                         // edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
@@ -78,7 +86,7 @@ public class DatosHamburguesa extends AppCompatActivity {
 
                         break;
 
-                    case 2:
+                    case 2:             //Caso de tamaño Whoper incrementa 6.5
                         totaltamanio += 6.50;
                         // edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
@@ -94,7 +102,7 @@ public class DatosHamburguesa extends AppCompatActivity {
             }
         });
 
-//ahora tratamos el comportamiento del spinner del tipo de carne
+//Repetiremos el proceso anterior pero con el spinner deñ tipo de carne
         sptipocarne.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -135,23 +143,25 @@ public class DatosHamburguesa extends AppCompatActivity {
             }
         });
 
-        //cambio de valor del edit text Total
-        //Vamos a tratar que el usuario cambie el valor de cada una de las hamburguesas posibles
-        //para ello usaremos la caracteristica whenever modifying
+        //Instanciamos los cuadros de texto en el cual especificara el usuario la cantidad de las hamburguesas
         edtclasica = (EditText) findViewById(R.id.cantclasica);
         edtclasiqueso = (EditText) findViewById(R.id.cantclasqueso);
         edtdobleq = (EditText) findViewById(R.id.cantdoblequeso);
         edtvegetal = (EditText) findViewById(R.id.cantvegetal);
         edtespecial = (EditText) findViewById(R.id.cantespecial);
 
-        edtclasica.setSelectAllOnFocus(true);
-        edtclasiqueso.setSelectAllOnFocus(true);
-        edtdobleq.setSelectAllOnFocus(true);
-        edtvegetal.setSelectAllOnFocus(true);
-        edtespecial.setSelectAllOnFocus(true);
+        //fin de la instanciacion de los cuadros de texto
 
+//A continuacion vamos a especificar las acciones del boton que dice:"Añadir a pedido",sin pulsar este boton no se podra seguir a delante
+        /*Comportatiemnto
+        --Cuando pulsas el boton de "añadir a pedido" este verifica que por lo menos una hamburguesa ha sido elegida
+        --si al menos 1 ha sido elegida y clicas en seguir,no te dejara sin antes pulsar el boton de añadir
+        --Al pulsar en añadir el boton de añadir a pedido se ocultara y aparecera un boton para modificar el pedido y los cuadros de texto
+         quedaran deshabilitados
+        --Al hacer click en el boton de modificar,los cuadros de texto vuelven a estar activos y desaparece el boton de modificar
+        apareciendo en su lugar el boton de añadir
 
-//añadir las hamburguesas seleccionadas e incrementar el total
+        */
         aniadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,20 +209,12 @@ modificar.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         sptipocarne.setSelection(0);
         sptamaño.setSelection(0);
-        edtclasica.setText("");
-        edtclasiqueso.setText("");
-        edtdobleq.setText("");
-        edtvegetal.setText("");
-        edtespecial.setText("");
-        edttotal.setText("");
-        ActivarControles(edtclasica,edtclasiqueso,edtdobleq,edtvegetal, edtespecial);
+        ActivarControles(edtclasica,edtclasiqueso,edtdobleq,edtvegetal, edtespecial,edttotal);
         aniadir.setVisibility(View.VISIBLE);
         modificar.setVisibility(View.GONE);
     }
+
 });
-
-
-
         edttotal.setText(""+total+"€");
 
         //PROGRAMACION DE LOS BOTONES
@@ -262,7 +264,7 @@ modificar.setOnClickListener(new View.OnClickListener() {
 
 
     //funciones de proyecto
-
+    //A esta fincion se le pasa como parametro el tipo de hamburguesa que es y el tamaño para hacer el calculo
     public static float calculaTotal(float ttipo, float ttamanio) {
         float total = 0;
         if (ttipo != 0 || ttamanio != 0)
@@ -272,7 +274,9 @@ modificar.setOnClickListener(new View.OnClickListener() {
         return total;
     }
 
-    //funcion para cambiar valor de total cambiando la hamburguesa seleccionada
+    /*funcion para cambiar valor de total cambiando la hamburguesa seleccionada
+    a este metodo se le pasa como parametro el total actual la cantidad de la hamburguesa seleccionada y el precio de esta
+    para hacer el calculo del nuevo total*/
     public static float calculoTotal(float total, int cantidad, float precio) {
 
         if (cantidad != 0)
@@ -281,6 +285,7 @@ modificar.setOnClickListener(new View.OnClickListener() {
         total=total;
         return total;
     }
+    //Mediante este metodo desactivamos los controles de los campos de texto para no poderlos editar
     public static void DesactivarControles(EditText edtclasica,EditText edtclasiqueso,EditText edtdobleq,EditText edtvegetal,EditText edtespecial){
         edtclasica.setEnabled(false);
         edtclasiqueso.setEnabled(false);
@@ -288,12 +293,19 @@ modificar.setOnClickListener(new View.OnClickListener() {
         edtvegetal.setEnabled(false);
         edtespecial.setEnabled(false);
     }
-    public static void ActivarControles(EditText edtclasica,EditText edtclasiqueso,EditText edtdobleq,EditText edtvegetal,EditText edtespecial){
+    //Metodo inverso que el arriba descrito
+    public static void ActivarControles(EditText edtclasica,EditText edtclasiqueso,EditText edtdobleq,EditText edtvegetal,EditText edtespecial,EditText edttotal){
         edtclasica.setEnabled(true);
         edtclasiqueso.setEnabled(true);
         edtdobleq.setEnabled(true);
         edtvegetal.setEnabled(true);
         edtespecial.setEnabled(true);
+        edtclasica.setText("");
+        edtclasiqueso.setText("");
+        edtdobleq.setText("");
+        edtvegetal.setText("");
+        edtespecial.setText("");
+        edttotal.setText("");
     }
 
 }
