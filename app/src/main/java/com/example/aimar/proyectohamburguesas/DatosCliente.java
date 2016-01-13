@@ -30,19 +30,29 @@ public class DatosCliente extends AppCompatActivity {
         seguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (nombre.getText().toString().equals("") || direccion.getText().toString().equals("") || telefono.getText().toString().equals("") || telefono.getText().length()<9)
+                if (nombre.getText().toString().length() > 0) {
+                    if (direccion.getText().toString().length() > 0) {
+                        if (telefono.getText().length() == 9) {
+                            mandadatoscli.putExtra("nombre", nombre.getText().toString());
+                            mandadatoscli.putExtra("direccion", direccion.getText().toString());
+                            mandadatoscli.putExtra("telefono", telefono.getText().toString());
+                            startActivity(mandadatoscli);
+                            finish();
+                        } else {
+                            telefono.setError("Tiene que tener 9 números");
+                            Toast.makeText(DatosCliente.this, "Rellene los datos correctamente por favor", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        direccion.setError("Campo de la direción vacio");
+                        Toast.makeText(DatosCliente.this, "Rellene los datos correctamente por favor", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    nombre.setError("Campo del nombre vacio");
                     Toast.makeText(DatosCliente.this, "Rellene los datos correctamente por favor", Toast.LENGTH_SHORT).show();
-                else {
-                    mandadatoscli.putExtra("nombre", nombre.getText().toString());
-                    mandadatoscli.putExtra("direccion", direccion.getText().toString());
-                    mandadatoscli.putExtra("telefono", telefono.getText().toString());
-                    startActivity(mandadatoscli);
-                    finish();
-
                 }
-
             }
         });
+
         salir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
