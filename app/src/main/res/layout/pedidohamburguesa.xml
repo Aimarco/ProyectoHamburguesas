@@ -173,10 +173,10 @@
         android:text="@string/btnsalir"
         android:id="@+id/salir"
         style="@android:style/Holo.Light.SegmentedButton"
+        android:backgroundTint="#f83d3d"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/imgvegetal"
-        android:layout_alignEnd="@+id/imgvegetal"
-        android:backgroundTint="#f83d3d" />
+        android:layout_alignLeft="@+id/imgvegetal"
+        android:layout_alignStart="@+id/imgvegetal" />
 
     <Button
         android:layout_width="wrap_content"

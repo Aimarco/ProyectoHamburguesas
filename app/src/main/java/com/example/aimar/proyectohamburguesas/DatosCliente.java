@@ -1,6 +1,14 @@
 package com.example.aimar.proyectohamburguesas;
 
+
+/**
+ * Created by Aimar&Diego
+ */
+
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,14 +22,21 @@ public class DatosCliente extends AppCompatActivity {
     private EditText direccion;
     private EditText telefono;
     private Intent mandadatoscli,datosapp;
-    private Button salir;
-    private Button seguir;
+    private Button salir,buscar,seguir;
     private ImageButton imgInfo;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_cliente);
+        //Objetos necesarios para la creacion de BBDD
+        TablasSql tablas=new TablasSql(this,"DB2DM3burguer",null,1);
+        db=tablas.getWritableDatabase();
+        //Validación de si la BBDD se ha creado correctamente
+       /* if(db!=null)
+            Toast.makeText(DatosCliente.this, "BBDD creada correctamente", Toast.LENGTH_SHORT).show();*/
+
         nombre = (EditText) findViewById(R.id.edtnombre);
         direccion = (EditText) findViewById(R.id.edtdireccion);
         telefono = (EditText) findViewById(R.id.edttlf);
@@ -30,6 +45,7 @@ public class DatosCliente extends AppCompatActivity {
         mandadatoscli = new Intent(this, DatosHamburguesa.class);
         imgInfo=(ImageButton) findViewById(R.id.imgbinfo);
         datosapp=new Intent(this,DatosApp.class);
+        buscar=(Button) findViewById(R.id.btnbuscarcli);
 
 
 
@@ -75,6 +91,23 @@ public class DatosCliente extends AppCompatActivity {
             }
         });
 
-
+        buscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String descri = nombre.toString();
+                String[] buscnombre=new String[] {nombre.getText().toString()};
+                Cursor fila = db.rawQuery("select nombre,direccion,telefono from Clientes where nombre like ?" ,buscnombre,null);
+                if (fila.moveToFirst()) {
+                    nombre.setText(fila.getString(0));
+                    direccion.setText(fila.getString(1));
+                    telefono.setText(fila.getString(2));
+                    buscar.setVisibility(View.GONE);
+                }
+                else
+                    Toast.makeText(DatosCliente.this, "No existen clientes con ese nombre", Toast.LENGTH_SHORT).show();
+                fila.close();
+                db.close();
+            }
+        });
     }
 }
