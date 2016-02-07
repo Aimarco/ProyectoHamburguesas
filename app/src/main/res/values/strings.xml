@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProyectoHamburguesas</string>
+    <string name="app_name">2DM3Burguer</string>
     <string name="total">TOTAL:</string>
     <string name="btnseguir">SEGUIR</string>
     <string name="btnsalir">SALIR</string>
@@ -35,6 +35,7 @@
     <string name="Empresa">Empresa:2DM3</string>
     <string name="tcarne">Tipo de carne:</string>
     <string name="datostitulo">Datos de la App </string>
+    <string name="buscacli">Buscar cliente</string>
 
 
     </resources>

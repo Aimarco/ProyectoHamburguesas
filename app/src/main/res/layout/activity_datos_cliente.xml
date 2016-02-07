@@ -39,17 +39,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/edtdireccion"
-        android:hint="Dirección"
-        android:layout_below="@+id/edtnombre"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/edtnombre"
-        android:layout_alignEnd="@+id/edtnombre" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
         android:maxLength="9"
@@ -57,7 +46,9 @@
         android:hint="Teléfono"
         android:layout_below="@+id/edtdireccion"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edtdireccion"
+        android:layout_alignEnd="@+id/edtdireccion" />
 
     <Button
         android:layout_width="wrap_content"
@@ -100,5 +91,29 @@
         android:src="@drawable/info"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtdireccion"
+        android:layout_below="@+id/edtnombre"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edtnombre"
+        android:layout_alignEnd="@+id/edtnombre"
+        android:hint="Dirección"
+        android:lines="1"
+        android:singleLine="true" />
+
+    <Button
+        style="@android:style/Holo.Light.SegmentedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buscacli"
+        android:id="@+id/btnbuscarcli"
+        android:backgroundTint="#14fcf4"
+        android:layout_alignTop="@+id/edtnombre"
+        android:layout_toRightOf="@+id/imgbinfo"
+        android:layout_toEndOf="@+id/imgbinfo" />
 
 </RelativeLayout>

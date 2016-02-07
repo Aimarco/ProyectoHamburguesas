@@ -2,6 +2,8 @@ package com.example.aimar.proyectohamburguesas;
 
 import android.app.AlertDialog;
 import android.app.Notification;
+import android.app.Notification.Style;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -16,12 +18,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by adminportatil on 18/12/2015.
+ * Created by Aimar&Diego
  */
 public class infopedido extends AppCompatActivity {
 private TextView nombre,direccion,tlf,clasica,clasiqueso,dobleq,vegetal,especial,agua,nestea,limon,naranja,cola,cerveza,total,premio,tamanio,tcarne;
 private ImageView imagenpremio;
     private Button aceptar,rechazar;
+    private Bebidas b;
+    private Personas p;
+    private hamburguesas h;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,45 +53,68 @@ private ImageView imagenpremio;
         premio=(TextView) findViewById(R.id.txtpremio);
         tamanio=(TextView) findViewById(R.id.Tamanio);
         tcarne=(TextView) findViewById(R.id.Tcarne);
+        Intent i=getIntent();
+        p=new Personas();
+        b=new Bebidas();
+        h=new hamburguesas();
+        p=(Personas) i.getSerializableExtra("persona");
+        b=(Bebidas) i.getSerializableExtra("bebidas");
+        h=(hamburguesas) i.getSerializableExtra("hamburguesas");
 
         //asignamos valor a todos los TextView mediante el pase de Extras de la Intent
-        nombre.setText(cogerinfo.getString("nombre"));
-        direccion.setText(cogerinfo.getString("direccion"));
-        tlf.setText(cogerinfo.getString("tlf"));
-        clasica.setText(clasica.getText()+""+cogerinfo.getString("clasica"));
-        clasiqueso.setText(clasiqueso.getText()+""+cogerinfo.getString("clasiqueso"));
-        dobleq.setText(dobleq.getText()+""+cogerinfo.getString("dobleq"));
-        vegetal.setText(vegetal.getText()+""+cogerinfo.getString("vegetal"));
-        especial.setText(especial.getText()+""+cogerinfo.getString("especial"));
-        agua.setText(agua.getText()+""+cogerinfo.getString("agua"));
-        nestea.setText(nestea.getText()+""+cogerinfo.getString("nestea"));
-        limon.setText(limon.getText()+""+cogerinfo.getString("limon"));
-        naranja.setText(naranja.getText()+""+cogerinfo.getString("naranja"));
-        cola.setText(cola.getText()+""+cogerinfo.getString("cocacola"));
-        cerveza.setText(cerveza.getText() + "" + cogerinfo.getString("cerveza"));
-        total.setText(total.getText()+""+cogerinfo.getString("total"));
-        tamanio.setText(tamanio.getText().toString()+""+cogerinfo.getString("tamanio"));
-        tcarne.setText(tcarne.getText().toString()+""+cogerinfo.getString("tcarne"));
+
+
+
+
+
+        nombre.setText(""+p.getNombre());
+        direccion.setText(""+p.getDireccion());
+        tlf.setText(""+p.getTelefono());
+        clasica.setText("Clasicas: "+h.getClasica());
+        clasiqueso.setText("Clasicas con queso: "+h.getClasiqueso());
+        dobleq.setText("Dobles de Queso "+h.getDobleq());
+        vegetal.setText("Vegetales: "+h.getVegetal());
+        especial.setText("Especiales: "+h.getEspecial());
+        agua.setText("Aguas: "+b.getAgua());
+        nestea.setText("Nestea: "+b.getNestea());
+        limon.setText("Limon: "+b.getLimon());
+        naranja.setText("Naranja: "+b.getNaranja());
+        cola.setText("Cocacola: "+b.getCocacola());
+        cerveza.setText("Cerveza: "+b.getCerveza());
+        float Total=h.getTotalh()+b.getTotalb();
+        total.setText(""+Total+"€");
+        switch (h.getTamaño()){
+            case 1:tamanio.setText("Tamaño: Grande");break;
+            case 2:tamanio.setText("Tamaño: Whopper");break;
+        }
+        switch (h.getTipoc()){
+            case 1: tcarne.setText("Carne de Buey");break;
+            case 2: tcarne.setText("Carne de Pollo");break;
+            case 3: tcarne.setText("Carne de Ternera");break;
+        }
+
 
 //vamos a crear un objeto drawable para asignarle diferentes imagenes al imageView
 
-        if(Float.valueOf(total.getText().toString().substring(6, 10))>15 && Float.valueOf(total.getText().toString().substring(6, 10))<25 ){
+        if(Total>15 && Total<25 ){
             imagenpremio.setImageDrawable(getResources().getDrawable(R.drawable.pandroid));
             premio.setVisibility(View.VISIBLE);}
-        else if(Float.valueOf(total.getText().toString().substring(6, 10))>25){
+        else if(Total>25){
             imagenpremio.setImageDrawable(getResources().getDrawable(R.drawable.premiogordo));
                 premio.setVisibility(View.VISIBLE);}
 
-
+        //Programación del botón para aceptar el pedido
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                notificar();
                 Toast.makeText(infopedido.this, "Gracias por confiar en nosotros.", Toast.LENGTH_SHORT).show();
                setContentView(R.layout.activity_datos_cliente);
                 finish();
             }
         });
 
+        //Programacion del boton de rechazar el pedido y salir de la app
         rechazar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +130,19 @@ private ImageView imagenpremio;
 
 
 
+    }
+    public void notificar(){
+        NotificationManager nmanager=(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification.Builder notificacionbuild=new Notification.Builder(this)
+        .setWhen(System.currentTimeMillis())
+        .setTicker("Cebanc Burguer")
+        .setSmallIcon(R.drawable.hamburguesaini)
+        .setSmallIcon(R.drawable.hamburguesaini)
+        .setContentTitle("Notificación de pedido")
+        .setContentText("Realizado el pedido correctamente.")
+        .setStyle(new Notification.BigTextStyle()
+                .bigText("Realizado el pedido correctamente,tardara al rededor de 40 minutos.Incluira el regalo descrito en la App"));
+        nmanager.notify(1,notificacionbuild.build());
     }
 
 

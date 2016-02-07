@@ -1,5 +1,9 @@
 package com.example.aimar.proyectohamburguesas;
 
+/**
+ * Created by Aimar&Diego
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +35,9 @@ public class pedidobebida extends AppCompatActivity {
     private int cocacolacont=0;
     private int cervezacont=0;
     private Intent intent;
+    private Bebidas b;
+    private hamburguesas h;
+    private Personas p;
 //find e instanciacion de objetos necesarios
 
 
@@ -53,6 +60,11 @@ public class pedidobebida extends AppCompatActivity {
         siguiente = (Button) findViewById(R.id.button2);
         intent = new Intent(this, infopedido.class);
         final Bundle recibedatos = getIntent().getExtras();
+        b=new Bebidas();
+        Intent i=getIntent();
+        h=new hamburguesas();
+        h=(hamburguesas) i.getSerializableExtra("hamburguesas");
+        p=(Personas) i.getSerializableExtra("persona");
         //fin inicialización
 
         //Programación de los imageButton de cada una de las bebidas
@@ -65,6 +77,7 @@ public class pedidobebida extends AppCompatActivity {
                 aguacont++;
                 total.setText(totalagua + "€");
                 texto();
+                b.setAgua(aguacont);
 
             }
         });
@@ -75,6 +88,7 @@ public class pedidobebida extends AppCompatActivity {
                 nesteacont++;
                 total.setText(totalsum + "€");
                 texto();
+                b.setNestea(nesteacont);
             }
         });
         b_limon.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +98,7 @@ public class pedidobebida extends AppCompatActivity {
                 limoncont++;
                 total.setText(totalsum + "€");
                 texto();
+                b.setLimon(limoncont);
 
 
             }
@@ -95,6 +110,7 @@ public class pedidobebida extends AppCompatActivity {
                 naranjacont++;
                 total.setText(totalsum + "€");
                 texto();
+                b.setNaranja(naranjacont);
 
 
             }
@@ -106,6 +122,7 @@ public class pedidobebida extends AppCompatActivity {
                 cocacolacont++;
                 total.setText(totalsum + "€");
                 texto();
+                b.setCocacola(cocacolacont);
             }
         });
 
@@ -116,6 +133,7 @@ public class pedidobebida extends AppCompatActivity {
                 cervezacont++;
                 total.setText(totalsum + "€");
                 texto();
+                b.setCerveza(cervezacont);
             }
         });
 
@@ -141,28 +159,15 @@ public class pedidobebida extends AppCompatActivity {
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float totalham= Float.valueOf(recibedatos.getString("total").toString());
-                float total2= totalham + totalsum;
-
-                intent.putExtra("agua", Integer.toString(aguacont));
-                intent.putExtra("nestea", Integer.toString(nesteacont));
-                intent.putExtra("limon", Integer.toString(limoncont));
-                intent.putExtra("naranja", Integer.toString(naranjacont));
-                intent.putExtra("cocacola",Integer.toString(cocacolacont));
-                intent.putExtra("cerveza", Integer.toString(cervezacont));
-                intent.putExtra("clasica",recibedatos.getString("clasica"));
-                intent.putExtra("clasiqueso",recibedatos.getString("clasiqueso"));
-                intent.putExtra("dobleq",recibedatos.getString("dobleq"));
-                intent.putExtra("vegetal",recibedatos.getString("vegetal"));
-                intent.putExtra("especial",recibedatos.getString("especial"));
-                intent.putExtra("nombre", recibedatos.getString("nombre"));
-                intent.putExtra("direccion",recibedatos.getString("direccion"));
-                intent.putExtra("tlf",recibedatos.getString("tlf"));
-                intent.putExtra("tamanio",recibedatos.getString("tamanio"));
-                intent.putExtra("tcarne",recibedatos.getString("tcarne"));
-                intent.putExtra("total",Float.toString(total2));
+                b.setTotalb(totalsum);
+                if(aguacont!=0 || nesteacont!=0 || limoncont!=0 || naranjacont!=0 || cocacolacont!=0 || cervezacont!=0){
+                intent.putExtra("bebidas", b);
+                intent.putExtra("hamburguesas",h);
+                intent.putExtra("persona",p);
                 startActivity(intent);
-                finish();
+                finish();}
+                else
+                Toast.makeText(pedidobebida.this, "Por favor,seleccione al menos una bebida", Toast.LENGTH_SHORT).show();
 
             }
         });

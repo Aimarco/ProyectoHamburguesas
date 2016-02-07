@@ -13,9 +13,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.aimar.proyectohamburguesas.hamburguesas;
 
 /**
- * Created by adminportatil on 10/12/2015.
+ * Created by Aimar&Diego
  */
 public class DatosHamburguesa extends AppCompatActivity {
     private TextView datonombre;
@@ -27,8 +28,9 @@ public class DatosHamburguesa extends AppCompatActivity {
     private float total, totaltipocarne, totaltamanio, clasica;
     private Intent datHamburguesa;
     private Button seguir,salir,aniadir,modificar;
-    private int totalhamburguesas;
     private int cantclasica,cantclasiqueso,cantdoble,cantvegetal,cantespecial;
+    private hamburguesas h;
+    private Personas p;
 
     //fin de la declaración de elementos necesarios
 
@@ -36,21 +38,24 @@ public class DatosHamburguesa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pedidohamburguesa);
+
+        Intent i=getIntent();
+        p=new Personas();
+        p=(Personas) i.getSerializableExtra("persona");
         seguir=(Button) findViewById(R.id.btnseguir);
         salir=(Button) findViewById(R.id.salir);
         total = 0;
-        totalhamburguesas=0;
         datonombre = (TextView) findViewById(R.id.txtnombrepas);
         datodir = (TextView) findViewById(R.id.txtdirecpas);
         datotlf = (TextView) findViewById(R.id.txttlfpas);
         final Bundle recibedatos = getIntent().getExtras();
-        datonombre.setText(recibedatos.getString("nombre"));
-        datodir.setText(recibedatos.getString("direccion"));
-        datotlf.setText(recibedatos.getString("telefono"));
+        datonombre.setText(""+p.getNombre());
+        datodir.setText(""+p.getDireccion());
+        datotlf.setText(""+p.getTelefono());
         edttotal = (EditText) findViewById(R.id.edtTotal);
-        totalhamburguesas=0;
         aniadir=(Button) findViewById(R.id.btnaniadepedido);
         modificar=(Button) findViewById(R.id.btnmodif);
+        h=new hamburguesas();
 
         //Declaramos el spinner y el array de valores para cada spinner
 
@@ -83,6 +88,7 @@ public class DatosHamburguesa extends AppCompatActivity {
                         // edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
                         edttotal.setText("" + total + "€");
+                        h.setTamaño(1);
 
                         break;
 
@@ -91,6 +97,7 @@ public class DatosHamburguesa extends AppCompatActivity {
                         // edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
                         edttotal.setText("" + total + "€");
+                        h.setTamaño(2);
                         break;
                 }
 
@@ -110,15 +117,15 @@ public class DatosHamburguesa extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         totaltipocarne += 0;
-                        // edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
                         edttotal.setText("" + total);
+
                         break;
                     case 1:
                         totaltipocarne += 2;
-                        // edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
                         edttotal.setText("" + total + "€");
+                        h.setTipoc(1);
                         break;
 
                     case 2:
@@ -126,12 +133,13 @@ public class DatosHamburguesa extends AppCompatActivity {
                         //edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
                         edttotal.setText("" + total + "€");
+                        h.setTipoc(2);
                         break;
                     case 3:
                         totaltipocarne += 3;
-                        // edttotal.setText("" + total);
                         total = calculaTotal(totaltipocarne, totaltamanio);
                         edttotal.setText("" + total + "€");
+                        h.setTipoc(3);
                         break;
 
                 }
@@ -153,7 +161,7 @@ public class DatosHamburguesa extends AppCompatActivity {
         //fin de la instanciacion de los cuadros de texto
 
 //A continuacion vamos a especificar las acciones del boton que dice:"Añadir a pedido",sin pulsar este boton no se podra seguir a delante
-        /*Comportatiemnto
+        /*Comportamiento
         --Cuando pulsas el boton de "añadir a pedido" este verifica que por lo menos una hamburguesa ha sido elegida
         --si al menos 1 ha sido elegida y clicas en seguir,no te dejara sin antes pulsar el boton de añadir
         --Al pulsar en añadir el boton de añadir a pedido se ocultara y aparecera un boton para modificar el pedido y los cuadros de texto
@@ -165,43 +173,49 @@ public class DatosHamburguesa extends AppCompatActivity {
         aniadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (sptamaño.getSelectedItemPosition() == 0 || sptipocarne.getSelectedItemPosition() == 0){
+                if (sptamaño.getSelectedItemPosition() == 0 || sptipocarne.getSelectedItemPosition() == 0) {
                     Toast.makeText(DatosHamburguesa.this, "Por favor seleccione el tamaño o el tipo de la carne que desee", Toast.LENGTH_SHORT).show();
                     aniadir.setVisibility(View.VISIBLE);
                     modificar.setVisibility(View.GONE);}
-                if (edtvegetal.getText().toString().equals("") && edtclasica.getText().toString().equals("") && edtclasiqueso.getText().toString().equals("") && edtdobleq.getText().toString().equals("") && edtespecial.getText().toString().equals("")){
-                    Toast.makeText(DatosHamburguesa.this, "Por favor seleccione por lo menos un tipo de hamburguesa", Toast.LENGTH_SHORT).show();
-                //aniadir.setVisibility(View.VISIBLE);
-                //modificar.setVisibility(View.GONE);
-                }
+                else{
+                    if (edtvegetal.getText().toString().equals("") && edtclasica.getText().toString().equals("") && edtclasiqueso.getText().toString().equals("") && edtdobleq.getText().toString().equals("") && edtespecial.getText().toString().equals("")) {
+                        Toast.makeText(DatosHamburguesa.this, "Por favor seleccione por lo menos un tipo de hamburguesa", Toast.LENGTH_SHORT).show();
+                        //aniadir.setVisibility(View.VISIBLE);
+                        //modificar.setVisibility(View.GONE);
+                    } else {
+                        cantclasica = 0;
+                        if (!edtclasica.getText().toString().equals("")){
+                            cantclasica = Integer.parseInt(edtclasica.getText().toString()) * 1;
+                            h.setClasica(Integer.parseInt(edtclasica.getText().toString()));}
+                        if (!edtclasiqueso.getText().toString().equals("")){
+                            cantclasiqueso = Integer.parseInt(edtclasiqueso.getText().toString()) * 2;
+                            h.setClasiqueso(Integer.parseInt(edtclasiqueso.getText().toString()));}
+                        else
+                            cantclasiqueso = 0;
+                        if (!edtdobleq.getText().toString().equals("")){
+                            cantdoble = Integer.parseInt(edtdobleq.getText().toString()) * 2;
+                            h.setDobleq(Integer.parseInt(edtdobleq.getText().toString()));}
+                        else
+                            cantdoble = 0;
+                        if (!edtvegetal.getText().toString().equals("")){
+                            cantvegetal = Integer.parseInt(edtvegetal.getText().toString()) * 2;
+                            h.setVegetal(Integer.parseInt(edtvegetal.getText().toString()));}
+                        else
+                            cantvegetal = 0;
+                        if (!edtespecial.getText().toString().equals("")){
+                            cantespecial = Integer.parseInt(edtespecial.getText().toString()) * 3;
+                            h.setEspecial(Integer.parseInt(edtespecial.getText().toString()));}
+                        else
+                            cantespecial = 0;
 
-                else {
-                    cantclasica = 0;
-                    if (!edtclasica.getText().toString().equals(""))
-                        cantclasica = Integer.parseInt(edtclasica.getText().toString()) * 1;
-                    if (!edtclasiqueso.getText().toString().equals(""))
-                        cantclasiqueso = Integer.parseInt(edtclasiqueso.getText().toString()) * 2;
-                    else
-                        cantclasiqueso = 0;
-                    if (!edtdobleq.getText().toString().equals(""))
-                        cantdoble = Integer.parseInt(edtdobleq.getText().toString()) * 2;
-                    else
-                        cantdoble = 0;
-                    if (!edtvegetal.getText().toString().equals(""))
-                        cantvegetal = Integer.parseInt(edtvegetal.getText().toString()) * 2;
-                    else
-                        cantvegetal = 0;
-                    if (!edtespecial.getText().toString().equals(""))
-                        cantespecial = Integer.parseInt(edtespecial.getText().toString()) * 3;
-                    else
-                        cantespecial = 0;
+                        total = Float.valueOf(edttotal.getText().toString().substring(0, 3)) + (cantclasica + cantclasiqueso + cantdoble + cantvegetal + cantespecial);
+                        edttotal.setText(total + "€");
+                       h.setTotalh(total);
 
-                    total = Float.valueOf(edttotal.getText().toString().substring(0, 3)) + (cantclasica + cantclasiqueso + cantdoble + cantvegetal + cantespecial);
-                    edttotal.setText(total + "€");
-
-                    DesactivarControles(edtclasica, edtclasiqueso, edtdobleq, edtvegetal, edtespecial);
-                    aniadir.setVisibility(View.GONE);
-                    modificar.setVisibility(View.VISIBLE);
+                        DesactivarControles(edtclasica, edtclasiqueso, edtdobleq, edtvegetal, edtespecial);
+                        aniadir.setVisibility(View.GONE);
+                        modificar.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
@@ -228,6 +242,7 @@ modificar.setOnClickListener(new View.OnClickListener() {
                 if(aniadir.getVisibility()==View.VISIBLE)
                     Toast.makeText(DatosHamburguesa.this, "Por favor añada las hamburguesas al pedido antes de continuar", Toast.LENGTH_SHORT).show();
                 else{
+                    /*
                 datHamburguesa.putExtra("clasica",edtclasica.getText().toString());
                 datHamburguesa.putExtra("clasiqueso",edtclasiqueso.getText().toString());
                 datHamburguesa.putExtra("dobleq",edtdobleq.getText().toString());
@@ -238,12 +253,13 @@ modificar.setOnClickListener(new View.OnClickListener() {
                 datHamburguesa.putExtra("tlf",recibedatos.getString("telefono"));
                 datHamburguesa.putExtra("total", Float.toString(total));
                 datHamburguesa.putExtra("tamanio",sptamaño.getSelectedItem().toString());
-                datHamburguesa.putExtra("tcarne",sptipocarne.getSelectedItem().toString());
+                datHamburguesa.putExtra("tcarne",sptipocarne.getSelectedItem().toString());*/
+                    datHamburguesa.putExtra("hamburguesas",h);
+                    datHamburguesa.putExtra("persona",p);
 
 
 
-
-                startActivity(datHamburguesa);finish();}
+                    startActivity(datHamburguesa);finish();}
 
 
 
